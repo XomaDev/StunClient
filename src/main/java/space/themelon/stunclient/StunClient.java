@@ -75,8 +75,10 @@ public class StunClient {
       for (int i = 0; i < 4; i++) {
         addrBytes[i] ^= (byte) (MAGIC_COOKIE >> (24 - i * 8));
       }
+      socket.close();
       return new StunResponse(family, InetAddress.getByAddress(addrBytes), publicPort);
     }
+    socket.close();
     return null;
   }
 }
